@@ -1,0 +1,65 @@
+$green-btn-confirm:#45d045;
+
+.wrap-chat {
+    display: flex;
+    flex-direction: column;
+    max-width: 650px;
+    margin: 3rem auto;
+    gap: .4rem;
+    width: 100%;
+    height: auto;
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .input-user-chat {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: .4rem;
+        text-align: center;
+        padding-bottom: 2rem;
+
+        border-bottom: 1px solid #cecece;
+
+        input {
+            flex: 1;
+            padding: 0 .5rem;
+            letter-spacing: 1px;
+            min-height: 35px;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            outline: none;
+            height: 200px;
+        }
+
+        button {
+            background-color: $green-btn-confirm;
+            color: #fff;
+            border: none;
+            font-size: 1.4rem;
+            padding: 0 1rem;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            transition: all .15s ease-in;
+            height: 35px;
+
+            &:hover {
+                background-color: transparent;
+                outline: 1px solid $green-btn-confirm;
+                color: $green-btn-confirm;
+            }
+        }
+
+    }
+}
+
+.wrap-card{
+    padding-top: 2rem;
+}

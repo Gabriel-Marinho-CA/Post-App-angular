@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/">
+    <title>Angular Messenger</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+
+<body>
+    {{!-- <div>
+        <h3>{{message}}</h3>
+    </div> --}}
+    <div>
+        {{!-- <form action="/register" method="post">
+            <input type="text" name="email">
+            <input type="number" name="idade">
+            <button type="submit">Enviar</button>
+        </form> --}}
+        <form action="/node-mongodb-mongoose-user" method="post">
+            <input type="text" name="emailBody" id="">
+            <button type="submit">Enviar</button>
+        </form>
+
+        <h1>Dados de user recuperados</h1>
+        <p>{{firstNameV}}</p>
+        <p>{{lastNameV}}</p>
+        <p>{{passwordV}}</p>
+        <p>{{emailV}}</p>
+        {{!-- <div>{{messagesV.map((msg) => <p>{{msg}}</p>)}}</div> --}}
+
+    </div>
+
+</body>
+
+</html>

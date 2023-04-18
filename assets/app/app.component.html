@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="wrap-chat">
+            <!-- -->
+            <app-message-input></app-message-input>
+            <app-message
+                [contentMessage]="contentMessage"></app-message>
+            <app-message-list></app-message-list>
+        </div>
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <app-message [propMessage]="message"></app-message>
+            <app-message [messageAliasP]="messageAlias"></app-message>
+            <app-message [name]="userName"></app-message> 
+            <app-message 
+            (changeNumber)="onChangeNumber($event)"
+            [messageTest]="messageTesteComponent" [name]="userName" ></app-message>
+            {{teste}}
+        </div>
+    </div>
+</div> -->

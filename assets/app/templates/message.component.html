@@ -1,0 +1,59 @@
+
+<div class="wrap-card">
+    <article [ngClass]="classesCard">
+        <div>
+            <p>
+                <span>{{contentMessage.content}}</span>
+            </p>
+        </div>
+        <footer>
+            <div class="author">
+                <p>Autor: {{contentMessage.author}}</p>
+            </div>
+            <div class="config">
+                <a
+                    (click)="onEdit()"
+                    href="#">Edit</a>
+                <a
+                    href="">Delete</a>
+            </div>
+        </footer>
+    </article>
+</div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <input type="text" [(ngModel)]="propMessage.content">
+            <input type="text" [(ngModel)]="propMessage.author"> -->
+<!-- <article
+            [ngClass]="classes"
+                [ngStyle]="{'background-color':color}"
+                class="panel panel-default">
+                <div class="panel-body">
+                    {{propMessage.content}}
+                    {{propMessageAlias.content}}
+                    NOME DO USER : {{name}}
+                    {{messageTest.author}}
+                    {{messageTest.content}}
+                </div>
+                <footer class="panel-footer" *ngIf="canShow">
+                    <div class="author">
+                        <h3 *ngIf="myName === 'gab'; else nameNotFound">titulo autor</h3>
+                        <ng-template #nameNotFound>
+                            <h3>Nome não encontrado</h3>
+                        </ng-template>
+                        {{propMessage.author}}
+                        {{propMessageAlias.author}}
+                    </div>
+                    <div class="config">
+                        <a
+                            (click)="onEdit()"
+                            href="#">Edit</a>
+                        <a
+                            href="">Delete</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div> -->
