@@ -1,0 +1,23 @@
+<div class="wrap-chat">
+    <h2>Digite sua mensagem</h2>
+    <form 
+        (ngSubmit)="onSubmit(refLocalForm)" #refLocalForm="ngForm" ngNativeValidate
+        action="">
+        <div class="input-user-chat">
+            <input
+                type="text" placeholder="Autor">
+            <textarea
+                #refLocalInputContent
+                ngModel
+                name="messageContentForm"
+                required 
+                placeholder="Mensagem">
+            </textarea>
+            <button
+                (click)="onSave(refLocalInputContent.value)"
+                type="submit">CONFIRMAR</button>
+        </div>
+    </form>
+    <!-- -->
+
+</div>

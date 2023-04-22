@@ -1,0 +1,18 @@
+.header {
+    nav {
+        padding: 2.6rem;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        ul {
+            display: flex;
+            justify-content: flex-end;
+            gap: 50px;
+
+            a {
+                color: #214d;
+                font-size: 1.8rem;
+            }
+        }
+    }
+}

@@ -4,20 +4,21 @@ import { EventEmitter } from '@angular/core';
 
 
 @Component({
-    selector: 'app-message',
-    templateUrl: '../../templates/message/message.component.html',
-    styles: [
-        `
-        .MessageComponentWrapper {
-            max-width: 650px;
-            margin: 3rem auto;
-        }
-        `
+    selector: 'app-message-card',
+    templateUrl: '../../templates/message/message-card.component.html',
 
-    ]
-
+    styleUrls: ["../../scss/partials/cardsChat.css"]
 })
-export class MessageComponent {
+export class MessageCardComponent {
+
+    classesCard = ["wrap-card-msg"];
+
+    @Input() contentMessage: Message = new Message("", "");
+
+    onEdit() {
+
+    }
+
     constructor() {
     }
 }

@@ -1,0 +1,21 @@
+<div class="wrap-card">
+    <article [ngClass]="classesCard">
+        <div>
+            <p>
+                <span>{{contentMessage.content}}</span>
+            </p>
+        </div>
+        <footer>
+            <div class="author">
+                <p>Autor: {{contentMessage.author}}</p>
+            </div>
+            <div class="config">
+                <a
+                    (click)="onEdit()"
+                    href="#">Edit</a>
+                <a
+                    href="">Delete</a>
+            </div>
+        </footer>
+    </article>
+</div>

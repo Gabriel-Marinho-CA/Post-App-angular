@@ -1,0 +1,20 @@
+<div class="auth-wrapper">
+    <header>
+        <h1>Autenticação</h1>
+        <nav>
+            <ul>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['signin']">SignIn</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['signup']">SignUp</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['logout']">LogOut</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <router-outlet></router-outlet>
+
+</div>

@@ -3,8 +3,6 @@ $green-btn-confirm:#45d045;
 .wrap-chat {
     display: flex;
     flex-direction: column;
-    max-width: 650px;
-    margin: 3rem auto;
     gap: .4rem;
     width: 100%;
     height: auto;
@@ -37,6 +35,13 @@ $green-btn-confirm:#45d045;
             resize: vertical;
             outline: none;
             height: 200px;
+            border-radius: 2px;
+
+
+            &.ng-invalid {
+                border: 1px solid red;
+                border-radius: 2px;
+            }
         }
 
         button {
@@ -60,6 +65,6 @@ $green-btn-confirm:#45d045;
     }
 }
 
-.wrap-card{
+.wrap-card {
     padding-top: 2rem;
 }

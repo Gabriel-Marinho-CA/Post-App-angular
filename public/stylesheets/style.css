@@ -1,6 +1,25 @@
+*:not(i) {
+  font-family: "Nunito Sans" !important;
+}
+
+
+html {
+  overflow-x: hidden;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 a {
@@ -24,5 +43,4 @@ a.danger {
 
 input.ng-invalid.ng-touched {
   border: 1px solid red;
-} 
- 
+}

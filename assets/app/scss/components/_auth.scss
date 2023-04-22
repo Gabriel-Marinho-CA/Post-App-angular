@@ -1,0 +1,22 @@
+.auth-wrapper {
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #000;
+        margin-bottom: 1.3rem;
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+
+            li a {
+                color: #21d;
+                text-decoration: underline;
+                font-weight: bold;
+                font-size: 1.8rem;
+            }
+        }
+    }
+}

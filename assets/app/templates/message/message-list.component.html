@@ -1,0 +1,4 @@
+ <app-message-card
+    *ngFor="let msg of messageS"
+    [contentMessage]="msg"
+    (editClicked_MessageMetodoClasse)="msg.content=$event"></app-message-card>

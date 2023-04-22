@@ -1,24 +1,8 @@
 
-<div class="wrap-card">
-    <article [ngClass]="classesCard">
-        <div>
-            <p>
-                <span>{{contentMessage.content}}</span>
-            </p>
-        </div>
-        <footer>
-            <div class="author">
-                <p>Autor: {{contentMessage.author}}</p>
-            </div>
-            <div class="config">
-                <a
-                    (click)="onEdit()"
-                    href="#">Edit</a>
-                <a
-                    href="">Delete</a>
-            </div>
-        </footer>
-    </article>
+<div class="MessageComponentWrapper">
+    <app-message-input></app-message-input>
+    <app-message-card></app-message-card>
+    <app-message-list></app-message-list>
 </div>
 <!-- <div class="container">
     <div class="row">
