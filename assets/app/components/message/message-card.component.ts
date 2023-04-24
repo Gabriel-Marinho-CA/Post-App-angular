@@ -1,6 +1,7 @@
 import { Component, Input, Output } from "@angular/core";
 import { Message } from '../../models/message.model';
 import { EventEmitter } from '@angular/core';
+import { MessageService } from "./message.services";
 
 
 @Component({
@@ -14,13 +15,18 @@ export class MessageCardComponent {
     classesCard = ["wrap-card-msg"];
 
     @Input() contentMessage: Message = new Message("", "");
+    constructor(private messageServiceObj: MessageService) {};
+
+    
 
     onEdit() {
 
     }
-
-    constructor() {
+    onDelete() {
+        this.messageServiceObj.deleteMessage(this.contentMessage);
     }
+
+  
 }
 // import { Component, Input, Output } from "@angular/core";
 // import { Message } from '../../models/message.model';

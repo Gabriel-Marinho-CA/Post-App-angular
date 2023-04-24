@@ -6,11 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
-
+var messageRoutes = require("./routes/messages");
+// const { MongoClient} = require("mongodb");
 
 var app = express();
+
+
 const db_name = 'node-angular';
+// mongoose.connect(`mongodb://localhost:27017/${db_name}`);
 mongoose.connect(`mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test`);
+// mongoose.connect(`mongodb://localhost:27017/teste`);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -32,12 +37,30 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', appRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     return res.render('index');
 });
 
+
+/* ============APLICATION ROUTES============== */
+
+
+app.use('/message', messageRoutes);
+app.use('/', appRoutes);
+
+
+
+
+/* =========================== */
+
+// async function main() {
+//     await mongoose.connect('mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test')
+//     console.log("conectado ao mongoose")
+// }
+
+// main().catch((err) => console.log(err))
 
 module.exports = app;

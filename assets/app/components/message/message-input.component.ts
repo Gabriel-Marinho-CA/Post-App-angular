@@ -23,14 +23,18 @@ export class MessageInputComponent {
     //     this.messageService.addMessage(messageAux);
     // }
 
-    onSubmit(form: NgForm){
-        const msgAux = new Message('Gab',form.value.messageContentForm,);
-        this.messageService.addMessage(msgAux);
-        console.log(form);
+    onSubmit(form: NgForm) {
+        const msgAux = new Message('Gab', form.value.messageContentForm);
+
+        this.messageService.addMessage(msgAux)
+            .subscribe(
+                successData => console.log(successData),
+                errData => console.log(errData),
+            );
 
         form.resetForm();
-        
+
     }
-        
-    
+
+
 }
