@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 var appRoutes = require('./routes/app');
 var messageRoutes = require("./routes/messages");
+const Message = require("./models/message");
+
 // const { MongoClient} = require("mongodb");
 
 var app = express();
@@ -14,7 +16,19 @@ var app = express();
 
 const db_name = 'node-angular';
 // mongoose.connect(`mongodb://localhost:27017/${db_name}`);
-mongoose.connect(`mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test`);
+async function main() {
+    await mongoose.connect('mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/?retryWrites=true&w=majority')
+
+    // const newMessage = new Message({
+    //     content: "Sou um conteudo"
+    // });
+
+    // newMessage.save();
+    console.log("conectado")
+
+}
+main().catch((err) => console.log(err))
+// mongoose.connect(`mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test`);
 // mongoose.connect(`mongodb://localhost:27017/teste`);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +51,13 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+})
+
 
 
 // catch 404 and forward to error handler
@@ -50,7 +71,6 @@ app.use(function (req, res, next) {
 
 app.use('/message', messageRoutes);
 app.use('/', appRoutes);
-
 
 
 
