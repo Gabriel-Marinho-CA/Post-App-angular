@@ -13,18 +13,13 @@ export class MessageService {
     addMessage(message: Message) {
         this.messageSService.push(message);
 
-        // let requestOptions = new RequestOptions({
-        //     headers: null, withCredentials:
-        //         true
-        // });
-
-        const reqBody = message;
+        const reqBody = JSON.stringify(message);
         const headersReq = new Headers(
             {
                 'content-type': 'application/json',
                 'Accept': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization': 'authkey', 
+                'Authorization': 'authkey',
                 'userid': '1'
             }
         );
@@ -38,28 +33,34 @@ export class MessageService {
     }
 
     getMessages() {
-        return this.messageSService;
+        // return this.messageSService;
 
-        // return this.http.get('http://localhost:3000/mensagens')
-        //     .map((res: Response) => {
-        //         const resJson = res.json();
+        return this.http.get('http://localhost:3000/mensagens')
+            .map((res: Response) => {
+                const resJson = res.json();
 
-        //         console.log(resJson);
-        //         const msgRes = resJson.objMessagS
+                console.log(resJson);
+                const msgRes = resJson.objMessagS
 
-        //         let transformedCastMessageModelFrontend: Message[] = [];
+                let transformedCastMessageModelFrontend: Message[] = [];
 
-        //         for (let msg of msgRes) {
-        //             transformedCastMessageModelFrontend.push(
-        //                 new Message(msg.content, 'gab', msg._id, null)
-        //             );
-        //         }
+                for (let msg of msgRes) {
+                    transformedCastMessageModelFrontend.push(
+                        new Message(msg.content, 'gab', msg._id, null)
+                    );
+                }
 
-        //         this.messageSService = transformedCastMessageModelFrontend;
-        //         return transformedCastMessageModelFrontend;
-        //     })
-        //     .catch((err: Response) => Observable.throw(err));
+                this.messageSService = transformedCastMessageModelFrontend;
+                return transformedCastMessageModelFrontend;
+            })
+            .catch((err: Response) => Observable.throw(err));
     }
+
+    updateMessage(message:Message) {
+
+    }
+
+    
     deleteMessage(message: Message) {
         this.messageSService.splice(this.messageSService.indexOf(message), 1);
 

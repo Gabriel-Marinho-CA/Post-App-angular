@@ -12,23 +12,21 @@ import { MessageService } from "./message.services";
 export class MessageListComponent implements OnInit {
 
     messageS: Message[] = [
-        new Message("t1", "gabs"),
-        new Message("t2", "gabs"),
-        new Message("t3", "gabs")
+        new Message("gabs","conteudo")
     ]
 
     constructor(private messageService: MessageService) { }
 
     ngOnInit(): void {
-        this.messageS = this.messageService.getMessages();
-        // this.messageService.getMessages()
-        //     .subscribe(
-        //         (successData: Message[]) => {
-        //             this.messageS = successData;
-        //             console.log(successData)
-        //         },
-        //         errData => console.log(errData)
-        //     )
+        // this.messageS = this.messageService.getMessages();
+        this.messageService.getMessages()
+            .subscribe(
+                (successData: Message[]) => {
+                    this.messageS = successData;
+                    console.log(successData)
+                },
+                errData => console.log(errData)
+            )
     }
 
 }

@@ -15,35 +15,76 @@ router.post('/mensagens', async function (req, res, next) {
     } catch (error) {
         console.log(error)
     }
-
-   
-
-    // await message.save(function (err, result) {
-    //     if (err) {
-    //         return res.status(500).json({
-    //             error: `Ocorreu um erro no servidor${err}`,
-
-    //         });
-    //     }
-    //     res.status(200).json({
-    //         msg: `Mensagem Salva com sucesso!${result}`,
-
-    //     })
-    // })
 });
+
+router.put('/mensagens/:id', async function (req, res, next) {
+    try {
+
+        const {
+            id
+        } = req.params;
+
+        const MessageUpdated = await Message.findByIdAndUpdate(id, req.body);
+
+        const responseUpdated = [{
+                message: "Messsage updated !!"
+            },
+            MessageUpdated
+
+        ]
+
+
+        return res.status(200).json(responseUpdated)
+
+    } catch (error) {
+        return res.status(400).json({
+            msg: "Failed to update Product",
+            err: error
+        })
+    }
+})
+
+router.delete('/mensagens/:id', async function (req, res, next) {
+    try {
+        const {
+            id
+        } = req.params;
+
+        const MessageDeleted = await Message.findByIdAndDelete(id);
+
+        return MessageDeleted ?
+            res.status(200).json([{
+                    msg: "Product Deleted"
+                },
+                MessageDeleted
+            ]) :
+            res.status(404).json({
+                msg: "Message does not exists"
+            })
+    } catch (error) {
+        res.status(404).json([{
+                msg: "Fail to delete message"
+            },
+            error
+        ])
+    }
+})
+
 
 router.get('/', function (req, res, next) {
     Message.find()
-        .exec(function (err, result) {
-            if (err) {
-                return res.status(500).json({
-                    msg: `Um erro descoinhecido aconteceu${err}`
-                })
-            }
+        .exec()
+        .then(messages => {
             res.status(200).json({
-                msg: `Mensagem recuperada com sucesso ${result}`
-            })
+                message: 'Messages retrieved successfully',
+                data: messages
+            });
         })
+        .catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        });
 })
 
 
