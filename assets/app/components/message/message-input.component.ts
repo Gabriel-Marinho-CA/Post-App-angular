@@ -26,8 +26,6 @@ export class MessageInputComponent {
     onSubmit(form: NgForm) {
         const msgAux = new Message('Gab', form.value.messageContentForm);
 
-        console.log(msgAux);
-
         this.messageService.addMessage(msgAux)
             .subscribe(
                 successData => console.log(successData),

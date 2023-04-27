@@ -2,20 +2,45 @@ var express = require("express");
 const router = express.Router();
 var Message = require("../models/message");
 
+
+router.get('/', function (req, res, next) {
+    return res.render('index');
+    // Message.find()
+    //     .then((res) => {
+    //         res.status(200).json(200).json({
+    //             msg: "Mensagem recuperada com sucesso",
+    //         })
+    //     })
+    //     .catch((err) => {
+    //         return res.status(500).json({
+    //             msg: "Ocorreu  um erro ao buscar as mensagens",
+    //             error: err
+    //         })
+
+    //     })
+})
+
+
 router.post('/', async function (req, res, next) {
-    console.log(req.body.content)
+
     var message = new Message({
         content: req.body.content
     });
 
-    console.log(message);
-
     try {
-        await message.save();
+        const msgAdded = await message.save();
+        res.status(200).json([{
+            msg: "Mensagem cadastrada"
+        }, msgAdded]);
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.status(500).json({
+            error: "Ocorreu um erro ao adicionar a mensagem"
+        });
     }
 });
+
+
 
 router.put('/:id', async function (req, res, next) {
     try {
@@ -71,22 +96,6 @@ router.delete('/:id', async function (req, res, next) {
 })
 
 
-router.get('/', function (req, res, next) {
-    Message.find()
-        .exec()
-        .then(messages => {
-            console.log("dsadsa" + messages);
-            res.status(200).json({
-                message: 'Messages retrieved successfully',
-                data: messages
-            });
-        })
-        .catch(err => {
-            res.status(500).json({
-                error: err
-            });
-        });
-})
 
 
 module.exports = router;
