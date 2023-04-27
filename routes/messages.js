@@ -2,23 +2,25 @@ var express = require("express");
 const router = express.Router();
 var Message = require("../models/message");
 
+router.get('/', async function (req, res, next) {
 
-router.get('/', function (req, res, next) {
-    return res.render('index');
-    // Message.find()
-    //     .then((res) => {
-    //         res.status(200).json(200).json({
-    //             msg: "Mensagem recuperada com sucesso",
-    //         })
-    //     })
-    //     .catch((err) => {
-    //         return res.status(500).json({
-    //             msg: "Ocorreu  um erro ao buscar as mensagens",
-    //             error: err
-    //         })
+    try {
+        const messages = await Message.find({});
+        return res.status(200).json({
+            msg: "Mensagem recuperada com sucesso",
+            data: messages
+        })
 
-    //     })
-})
+    } catch (error) {
+        return res.status(500).json({
+            msg: "Ocorreu um erro ao buscar as mensagens",
+            err: error
+        });
+    }
+
+
+});
+
 
 
 router.post('/', async function (req, res, next) {
@@ -41,35 +43,9 @@ router.post('/', async function (req, res, next) {
 });
 
 
-
-router.put('/:id', async function (req, res, next) {
-    try {
-
-        const {
-            id
-        } = req.params;
-
-        const MessageUpdated = await Message.findByIdAndUpdate(id, req.body);
-
-        const responseUpdated = [{
-                message: "Messsage updated !!"
-            },
-            MessageUpdated
-
-        ]
-
-
-        return res.status(200).json(responseUpdated)
-
-    } catch (error) {
-        return res.status(400).json({
-            msg: "Failed to update Product",
-            err: error
-        })
-    }
-})
-
 router.delete('/:id', async function (req, res, next) {
+
+    // console.log(req.body)
     try {
         const {
             id
@@ -93,6 +69,58 @@ router.delete('/:id', async function (req, res, next) {
             error
         ])
     }
+})
+
+// router.get('/:id', async function (req, res, next) {
+//     console.log(req.body);
+//     console.log(req.params);
+
+//     try {
+//         const {
+//             id
+//         } = req.params;
+
+//         const messageUpdateContent = await Message.findById(id);
+
+//         res.status(200).json(messageUpdateContent);
+
+//     } catch (error) {
+//         res.status(500).json({
+//             msg: "Ops, mensagem não existe"
+//         });
+//     }
+// })
+
+
+
+router.put('/:id', async function (req, res, next) {
+
+    console.log(req.params);
+    console.log(req.body);
+
+    // try {
+    //     const {
+    //         id
+    //     } = req.params;
+
+    //     const MessageUpdated = await Message.findByIdAndUpdate(id, req.body);
+
+    //     const responseUpdated = [{
+    //             message: "Messsage updated !!"
+    //         },
+    //         MessageUpdated
+
+    //     ]
+
+
+    //     return res.status(200).json(responseUpdated)
+
+    // } catch (error) {
+    //     return res.status(400).json({
+    //         msg: "Failed to update Product",
+    //         err: error
+    //     })
+    // }
 })
 
 

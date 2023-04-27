@@ -1,5 +1,6 @@
 $edit-color:#30a7d6;
 $delet-color:red;
+$green-btn-confirm:#45d045;
 
 .wrap-card {
     padding-top: 2rem;
@@ -60,6 +61,65 @@ $delet-color:red;
                         &:hover {
                             background-color: $delet-color;
                             color: #fff;
+                        }
+                    }
+                }
+
+                .overlay {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: fixed;
+                    background-color: #000;
+                    opacity: .3;
+                    inset: 0;
+                }
+
+                .edit-modal {
+                    position: absolute;
+                    width: 100%;
+                    max-width: 350px;
+                    background-color: #fff;
+                    border-radius: 4px;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 2rem;
+
+                    >div {
+                        color: red;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                    p {
+                        margin: 0;
+                        text-align: start;
+
+                        &:nth-child(2) {
+                            font-weight: bold;
+                        }
+                    }
+
+                    textarea {
+                        margin-top: 1rem;
+                        max-height: 100px;
+                        overflow-y: auto;
+                    }
+
+                    button {
+                        background-color: $green-btn-confirm;
+                        border: none;
+                        font-size: 16px;
+                        border-radius: 4px;
+                        transition: all .15s ease-in;
+                        color: #fff;
+                        padding: .4rem 0;
+
+                        &:hover {
+                            font-size: 17px;
                         }
                     }
                 }

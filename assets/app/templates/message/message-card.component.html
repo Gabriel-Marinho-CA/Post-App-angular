@@ -11,11 +11,27 @@
             </div>
             <div class="config">
                 <a
-                    (click)="onEdit()"
-                    href="#">Edit</a>
+                    (click)="openEditModal()">Edit</a>
+
+                <div class="overlay" *ngIf="modalOpen"
+                    (click)="openEditModal()"></div>
+                <form
+                    class="edit-modal"
+                    *ngIf="modalOpen"
+                    (ngSubmit)="onEdit()"
+                    [formGroup]="formUpdateMsg">
+                    <div (click)="openEditModal()">x</div>
+                    <p>Conteudo da mensagem:</p>
+                    <p>{{contentMessage.content}}</p>
+                    <textarea
+                        placeholder="Digite sua nova mensagem"
+                        formControlName=content
+                        type="text">
+                    </textarea>
+                    <button type="submit" (click)="onEdit()">Confirmar</button>
+                </form>
                 <a
-                    (click)="onDelete()"
-                    href="">Delete</a>
+                    (click)="onDelete()">Delete</a>
             </div>
         </footer>
     </article>

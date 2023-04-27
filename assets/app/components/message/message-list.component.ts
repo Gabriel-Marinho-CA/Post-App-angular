@@ -12,7 +12,7 @@ import { MessageService } from "./message.services";
 export class MessageListComponent implements OnInit {
 
     messageS: Message[] = [
-        new Message("gabs","conteudo")
+        new Message("gabs", "conteudo")
     ]
 
     constructor(private messageService: MessageService) { }
@@ -23,7 +23,7 @@ export class MessageListComponent implements OnInit {
             .subscribe(
                 (successData: Message[]) => {
                     this.messageS = successData;
-                    console.log(successData)
+
                 },
                 errData => console.log(errData)
             )
