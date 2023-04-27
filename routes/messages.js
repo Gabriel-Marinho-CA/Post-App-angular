@@ -2,7 +2,7 @@ var express = require("express");
 const router = express.Router();
 var Message = require("../models/message");
 
-router.post('/mensagens', async function (req, res, next) {
+router.post('/', async function (req, res, next) {
     console.log(req.body.content)
     var message = new Message({
         content: req.body.content
@@ -17,7 +17,7 @@ router.post('/mensagens', async function (req, res, next) {
     }
 });
 
-router.put('/mensagens/:id', async function (req, res, next) {
+router.put('/:id', async function (req, res, next) {
     try {
 
         const {
@@ -44,7 +44,7 @@ router.put('/mensagens/:id', async function (req, res, next) {
     }
 })
 
-router.delete('/mensagens/:id', async function (req, res, next) {
+router.delete('/:id', async function (req, res, next) {
     try {
         const {
             id
@@ -75,6 +75,7 @@ router.get('/', function (req, res, next) {
     Message.find()
         .exec()
         .then(messages => {
+            console.log("dsadsa" + messages);
             res.status(200).json({
                 message: 'Messages retrieved successfully',
                 data: messages

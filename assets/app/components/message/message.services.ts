@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class MessageService {
-    private messageSService: Message[] = [];
+    private messageSService: Message[] = []; 
 
     constructor(private http: Http) { };
 
@@ -40,7 +40,7 @@ export class MessageService {
                 const resJson = res.json();
 
                 console.log(resJson);
-                const msgRes = resJson.objMessagS
+                const msgRes = resJson.data
 
                 let transformedCastMessageModelFrontend: Message[] = [];
 
@@ -56,11 +56,11 @@ export class MessageService {
             .catch((err: Response) => Observable.throw(err));
     }
 
-    updateMessage(message:Message) {
+    updateMessage(message: Message) {
 
     }
 
-    
+
     deleteMessage(message: Message) {
         this.messageSService.splice(this.messageSService.indexOf(message), 1);
 

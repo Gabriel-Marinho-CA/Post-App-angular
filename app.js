@@ -15,10 +15,10 @@ var app = express();
 
 
 const db_name = 'node-angular';
-// mongoose.connect(`mongodb://localhost:27017/${db_name}`);
 async function main() {
     // await mongoose.connect('mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/?retryWrites=true&w=majority')
-    await mongoose.connect('mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test')
+    // await mongoose.connect('mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test')
+    mongoose.connect(`mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test`);
 
     // const newMessage = new Message({
     //     content: "Sou um conteudo"
@@ -64,19 +64,19 @@ app.use(function (req, res, next) {
 
 
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    return res.render('index');
-});
+
 
 
 /* ============APLICATION ROUTES============== */
 
-
-app.use('/message', messageRoutes);
+console.log('????')
+app.use('/mensagens', messageRoutes);
 app.use('/', appRoutes);
 
-
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    return res.render('index');
+});
 
 /* =========================== */
 
