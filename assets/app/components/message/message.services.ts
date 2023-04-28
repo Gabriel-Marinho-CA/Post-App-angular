@@ -8,21 +8,22 @@ import { Observable } from "rxjs";
 export class MessageService {
     private messageSService: Message[] = [];
 
+    private headersReq = new Headers(
+        {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
+    );
+
     constructor(private http: Http) { };
 
     addMessage(message: Message) {
         this.messageSService.push(message);
 
         const reqBody = JSON.stringify(message);
-        const headersReq = new Headers(
-            {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        );
 
-        return this.http.post('http://localhost:3000/mensagens', reqBody, { headers: headersReq })
-            .map((res: Response) => { res.json(); console.log(res) })
+        return this.http.post('http://localhost:3000/api/mensagens', reqBody, { headers: this.headersReq })
+            .map((res: Response) => window.location.href = "/")
             .catch((err: Response) => Observable.throw(err))
 
     }
@@ -30,14 +31,7 @@ export class MessageService {
     getMessages() {
         // return this.messageSService;
 
-        const headersReq = new Headers(
-            {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        );
-
-        return this.http.get('http://localhost:3000/mensagens', { headers: headersReq })
+        return this.http.get('http://localhost:3000/api/mensagens', { headers: this.headersReq })
             .map((response: Response) => {
 
                 const dataResponse = response.json();
@@ -58,19 +52,15 @@ export class MessageService {
             .catch((err: Response) => Observable.throw(err));
     }
 
-    updateMessage(message: Message) {
-        const headersReq = new Headers(
-            {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        );
+    updateMessage(updtadedMessage: Message, message: Message) {
 
-        console.log(message);
-        const reqBody = message;
+        const newMsg = updtadedMessage;
 
-        return this.http.put(`http://localhost:3000/mensagens`, reqBody).map((response) => {
-            console.log(response.json());
+
+        const reqBody = JSON.stringify(newMsg);
+
+        return this.http.put(`http://localhost:3000/api/mensagens/${message.userId}`, reqBody, { headers: this.headersReq }).map((response) => {
+            window.location.href = "/";
         })
             .catch((err: Response) => Observable.throw(err));
     }
@@ -78,11 +68,13 @@ export class MessageService {
 
     deleteMessage(message: Message) {
 
-        return this.http.delete(`http://localhost:3000/mensagens/${message.userId}`)
+        const id = message.userId;
+        console.log(message)
+
+        return this.http.delete(`http://localhost:3000/api/mensagens/${id}`, { headers: this.headersReq })
             .map((response) => {
                 window.location.href = "/";
             })
-            .catch((err: Response) => Observable.throw(err));
         // this.messageSService.splice(this.messageSService.indexOf(message), 1);
 
     }

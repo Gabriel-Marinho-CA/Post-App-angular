@@ -44,15 +44,13 @@ router.post('/', async function (req, res, next) {
 
 
 router.delete('/:id', async function (req, res, next) {
-
-    // console.log(req.body)
     try {
         const {
             id
         } = req.params;
+        console.log(id);
 
         const MessageDeleted = await Message.findByIdAndDelete(id);
-
         return MessageDeleted ?
             res.status(200).json([{
                     msg: "Product Deleted"
@@ -98,32 +96,30 @@ router.put('/:id', async function (req, res, next) {
     console.log(req.params);
     console.log(req.body);
 
-    // try {
-    //     const {
-    //         id
-    //     } = req.params;
+    try {
+        const {
+            id
+        } = req.params;
 
-    //     const MessageUpdated = await Message.findByIdAndUpdate(id, req.body);
+        const MessageUpdated = await Message.findByIdAndUpdate(id, req.body);
 
-    //     const responseUpdated = [{
-    //             message: "Messsage updated !!"
-    //         },
-    //         MessageUpdated
+        const responseUpdated = [{
+                message: "Messsage updated !!"
+            },
+            MessageUpdated
 
-    //     ]
+        ]
 
 
-    //     return res.status(200).json(responseUpdated)
+        return res.status(200).json(responseUpdated)
 
-    // } catch (error) {
-    //     return res.status(400).json({
-    //         msg: "Failed to update Product",
-    //         err: error
-    //     })
-    // }
+    } catch (error) {
+        return res.status(400).json({
+            msg: "Failed to update Product",
+            err: error
+        })
+    }
 })
-
-
 
 
 module.exports = router;

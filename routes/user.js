@@ -40,5 +40,13 @@ router.post("/autenticacao/signup", async function (req, res, next) {
 
 })
 
+router.get('/autenticacao', function (req,res,next) {
+    
+    res.status(200).json({
+        msg:req.body
+    })
+})
+
 app.use(cors());
 // app.use(express.json())
+module.exports = router;

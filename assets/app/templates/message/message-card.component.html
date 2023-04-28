@@ -15,11 +15,12 @@
 
                 <div class="overlay" *ngIf="modalOpen"
                     (click)="openEditModal()"></div>
-                <form
+                <div
                     class="edit-modal"
                     *ngIf="modalOpen"
                     (ngSubmit)="onEdit()"
-                    [formGroup]="formUpdateMsg">
+                    [formGroup]="formUpdateMsg"
+                    >
                     <div (click)="openEditModal()">x</div>
                     <p>Conteudo da mensagem:</p>
                     <p>{{contentMessage.content}}</p>
@@ -28,8 +29,8 @@
                         formControlName=content
                         type="text">
                     </textarea>
-                    <button type="submit" (click)="onEdit()">Confirmar</button>
-                </form>
+                    <button (click)="onEdit()">Confirmar</button>
+                </div>
                 <a
                     (click)="onDelete()">Delete</a>
             </div>

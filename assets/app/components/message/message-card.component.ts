@@ -35,7 +35,7 @@ export class MessageCardComponent implements OnInit {
 
     onEdit() {
         const msgUpdated = new Message('Gab', this.formUpdateMsg.value.content);
-        this.messageServiceObj.updateMessage(msgUpdated).subscribe(
+        this.messageServiceObj.updateMessage(msgUpdated, this.contentMessage).subscribe(
             successData => console.log(successData),
             errData => console.log(errData),
         );

@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 
 /* ============APLICATION ROUTES============== */
 
-app.use('/mensagens', messageRoutes);
+app.use('/api/mensagens', messageRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
