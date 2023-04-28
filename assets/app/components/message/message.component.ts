@@ -1,7 +1,4 @@
-import { Component, Input, Output } from "@angular/core";
-import { Message } from '../../models/message.model';
-import { EventEmitter } from '@angular/core';
-
+import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-message',
@@ -18,6 +15,5 @@ import { EventEmitter } from '@angular/core';
 
 })
 export class MessageComponent {
-    constructor() {
-    }
+    constructor() { }
 }

@@ -6,19 +6,15 @@ import { MessageService } from "./message.services";
 @Component({
     selector: "app-message-list",
     templateUrl: '../../templates/message/message-list.component.html',
-    // providers: [MessageService]
 })
 
 export class MessageListComponent implements OnInit {
 
-    messageS: Message[] = [
-        new Message("gabs", "conteudo")
-    ]
+    messageS: Message[] = [];
 
     constructor(private messageService: MessageService) { }
 
     ngOnInit(): void {
-        // this.messageS = this.messageService.getMessages();
         this.messageService.getMessages()
             .subscribe(
                 (successData: Message[]) => {

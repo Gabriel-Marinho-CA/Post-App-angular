@@ -18,6 +18,7 @@ export class MessageService {
     constructor(private http: Http) { };
 
     addMessage(message: Message) {
+
         this.messageSService.push(message);
 
         const reqBody = JSON.stringify(message);
@@ -29,53 +30,41 @@ export class MessageService {
     }
 
     getMessages() {
-        // return this.messageSService;
-
         return this.http.get('http://localhost:3000/api/mensagens', { headers: this.headersReq })
             .map((response: Response) => {
 
-                const dataResponse = response.json();
-
-                const messagesContent = dataResponse.data;
+                const messagesData = (response.json()).data;
 
                 let allMessageContent: Message[] = [];
 
-                for (let msg of messagesContent) {
+                for (let msg of messagesData) {
                     allMessageContent.push(new Message('gabriel', msg.content, msg._id, null))
                 }
 
                 this.messageSService = allMessageContent;
-
 
                 return allMessageContent;
             })
             .catch((err: Response) => Observable.throw(err));
     }
 
-    updateMessage(updtadedMessage: Message, message: Message) {
+    updateMessage(updtadedMessage: Message, { userId }: Message) {
 
-        const newMsg = updtadedMessage;
+        const reqBody = JSON.stringify(updtadedMessage);
 
-
-        const reqBody = JSON.stringify(newMsg);
-
-        return this.http.put(`http://localhost:3000/api/mensagens/${message.userId}`, reqBody, { headers: this.headersReq }).map((response) => {
+        return this.http.put(`http://localhost:3000/api/mensagens/${userId}`, reqBody, { headers: this.headersReq }).map((response) => {
             window.location.href = "/";
         })
             .catch((err: Response) => Observable.throw(err));
     }
 
 
-    deleteMessage(message: Message) {
+    deleteMessage({ userId }: Message) {
 
-        const id = message.userId;
-        console.log(message)
-
-        return this.http.delete(`http://localhost:3000/api/mensagens/${id}`, { headers: this.headersReq })
+        return this.http.delete(`http://localhost:3000/api/mensagens/${userId}`, { headers: this.headersReq })
             .map((response) => {
                 window.location.href = "/";
             })
-        // this.messageSService.splice(this.messageSService.indexOf(message), 1);
 
     }
 }

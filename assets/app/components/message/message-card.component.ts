@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output } from "@angular/core";
 import { Message } from '../../models/message.model';
-import { EventEmitter } from '@angular/core';
 import { MessageService } from "./message.services";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
@@ -13,12 +12,14 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 })
 export class MessageCardComponent implements OnInit {
 
-    modalOpen: boolean = false;
     classesCard = ["wrap-card-msg"];
+
+    modalOpen: boolean = false;
 
     formUpdateMsg: FormGroup;
 
     @Input() contentMessage: Message = new Message("", "");
+
 
     constructor(private messageServiceObj: MessageService) { };
 
@@ -28,13 +29,13 @@ export class MessageCardComponent implements OnInit {
         })
     }
 
-
     openEditModal() {
         this.modalOpen = !this.modalOpen;
     }
 
     onEdit() {
-        const msgUpdated = new Message('Gab', this.formUpdateMsg.value.content);
+        const msgUpdated:Message = new Message("Gab",this.formUpdateMsg.value.content);
+        
         this.messageServiceObj.updateMessage(msgUpdated, this.contentMessage).subscribe(
             successData => console.log(successData),
             errData => console.log(errData),

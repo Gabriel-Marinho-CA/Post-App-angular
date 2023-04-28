@@ -6,12 +6,15 @@
             </p>
         </div>
         <footer>
+
             <div class="author">
                 <p>Autor: {{contentMessage.author}}</p>
             </div>
+
             <div class="config">
-                <a
-                    (click)="openEditModal()">Edit</a>
+
+                <a (click)="openEditModal()">Edit</a>
+                <a (click)="onDelete()">Delete</a>
 
                 <div class="overlay" *ngIf="modalOpen"
                     (click)="openEditModal()"></div>
@@ -21,18 +24,16 @@
                     (ngSubmit)="onEdit()"
                     [formGroup]="formUpdateMsg"
                     >
-                    <div (click)="openEditModal()">x</div>
-                    <p>Conteudo da mensagem:</p>
-                    <p>{{contentMessage.content}}</p>
-                    <textarea
-                        placeholder="Digite sua nova mensagem"
-                        formControlName=content
-                        type="text">
-                    </textarea>
-                    <button (click)="onEdit()">Confirmar</button>
+                        <div (click)="openEditModal()">x</div>
+                        <p>Conteudo da mensagem:</p>
+                        <p>{{contentMessage.content}}</p>
+                        <textarea
+                            placeholder="Digite sua nova mensagem"
+                            formControlName=content
+                            type="text">
+                        </textarea>
+                        <button (click)="onEdit()">Confirmar</button>
                 </div>
-                <a
-                    (click)="onDelete()">Delete</a>
             </div>
         </footer>
     </article>

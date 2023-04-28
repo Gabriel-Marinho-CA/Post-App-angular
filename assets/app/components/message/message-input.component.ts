@@ -8,25 +8,17 @@ import { NgForm } from "@angular/forms";
 @Component({
     selector: "app-message-input",
     templateUrl: '../../templates/message/message-input.component.html',
-    // providers: [MessageService],
     styleUrls: ["../../scss/style.css"]
 })
 
 export class MessageInputComponent {
 
-    constructor(private messageService: MessageService) {
-
-    }
-
-    // onSave(text: string) {
-    //     const messageAux = new Message('Gab', text);
-    //     this.messageService.addMessage(messageAux);
-    // }
+    constructor(private messageService: MessageService) {}
 
     onSubmit(form: NgForm) {
-        const msgAux = new Message('Gab', form.value.messageContentForm);
+        const newMessage = new Message('Gab', form.value.messageContentForm);
 
-        this.messageService.addMessage(msgAux)
+        this.messageService.addMessage(newMessage)
             .subscribe(
                 successData => console.log(successData),
                 errData => console.log(errData),
@@ -35,6 +27,4 @@ export class MessageInputComponent {
         form.resetForm();
 
     }
-
-
 }

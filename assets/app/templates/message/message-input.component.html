@@ -1,8 +1,8 @@
 <div class="wrap-chat">
     <h2>Digite sua mensagem</h2>
-    <form 
-        (ngSubmit)="onSubmit(refLocalForm)" #refLocalForm="ngForm" ngNativeValidate
-        action="">
+    <form
+        (ngSubmit)="onSubmit(refLocalForm)" #refLocalForm="ngForm"
+        ngNativeValidate>
         <div class="input-user-chat">
             <input
                 type="text" placeholder="Autor">
@@ -10,13 +10,10 @@
                 #refLocalInputContent
                 ngModel
                 name="messageContentForm"
-                required 
+                required
                 placeholder="Mensagem">
             </textarea>
-            <!-- onSave(click)="onSave(refLocalInputContent.value)" -->
-            <button
-              
-                type="submit">CONFIRMAR</button>
+            <button type="submit">CONFIRMAR</button>
         </div>
     </form>
     <!-- -->
