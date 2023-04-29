@@ -38,7 +38,8 @@ export class MessageService {
                 let allMessageContent: Message[] = [];
 
                 for (let msg of messagesData) {
-                    allMessageContent.push(new Message('gabriel', msg.content, msg._id, null))
+                    console.log(msg);
+                    allMessageContent.push(new Message(msg.author, msg.content, msg._id, null))
                 }
 
                 this.messageSService = allMessageContent;

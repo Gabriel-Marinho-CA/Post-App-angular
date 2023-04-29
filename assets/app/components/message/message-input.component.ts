@@ -13,10 +13,18 @@ import { NgForm } from "@angular/forms";
 
 export class MessageInputComponent {
 
-    constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService) { }
 
     onSubmit(form: NgForm) {
-        const newMessage = new Message('Gab', form.value.messageContentForm);
+
+        const userDataLogged = localStorage.getItem('User Logged');
+
+        const userIdIndex = userDataLogged.indexOf(',');
+
+        const userName = userDataLogged.substring(-userDataLogged.length, userIdIndex);
+        const userId = userDataLogged.substring(userDataLogged.length, userIdIndex + 1);
+
+        const newMessage = new Message(userName, form.value.messageContentForm);
 
         this.messageService.addMessage(newMessage)
             .subscribe(

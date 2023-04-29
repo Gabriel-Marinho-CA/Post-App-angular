@@ -21,8 +21,12 @@ router.get('/', async function (req, res, next) {
 
 router.post('/', async function (req, res, next) {
     const message = new Message({
+        user: {
+            firstName: req.body.name
+        },
         content: req.body.content
     });
+    console.log(req.body);
 
     try {
 

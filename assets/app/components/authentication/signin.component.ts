@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-
+import { UserService } from "./user.services";
 
 @Component({
     selector: "app-signin",
-    templateUrl: "../../templates/authentication/signin.component.html"
+    templateUrl: "../../templates/authentication/signin.component.html",
+    providers: [UserService]
 })
 
 export class SigninComponent implements OnInit {
@@ -12,10 +13,20 @@ export class SigninComponent implements OnInit {
     formSignIn: FormGroup;
 
 
-    constructor(private FormBuilder: FormBuilder) { }
+    constructor(private FormBuilder: FormBuilder, private userService: UserService) { }
 
     onSubmit() {
-        console.log(this.formSignIn.value);
+
+        const userLogin = {
+            email: this.formSignIn.value.email,
+            password: this.formSignIn.value.password,
+        }
+
+        this.userService.getUser(userLogin).subscribe(
+            (successData) => console.log(successData),
+            (errData) => console.log(errData)
+        )
+
         this.formSignIn.reset();
     }
 

@@ -6,18 +6,19 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
+
+  private headersReq = new Headers({
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  });
 
   addUser(user: User) {
     const reqBody = JSON.stringify(user);
-    const headersReq = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
 
     return this.http
-      .post("http://localhost:3000/autenticacao/signup", reqBody, {
-        headers: headersReq,
+      .post("http://localhost:3000/api/autenticacao/signup", reqBody, {
+        headers: this.headersReq,
       })
       .map((res: Response) => {
         res.json();
@@ -26,36 +27,28 @@ export class UserService {
       .catch((err: Response) => Observable.throw(err));
   }
 
-  getUser() {
-    // return this.userService;
+  getUser(userLogin: any) {
 
-    const headersReq = new Headers({
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    });
+    const reqBody = JSON.stringify(userLogin);
 
     return this.http
-      .get("http://localhost:3000/autenticacao/signin", { headers: headersReq })
+      .post("http://localhost:3000/api/autenticacao/signin", reqBody, { headers: this.headersReq })
       .map((response: Response) => {
-        const dataResponse = response.json();
 
-        const messagesContent = dataResponse.data;
+        const resJson = (response.json()).userLogin;
 
-        let allMessageContent: User[] = [];
-
-        for (let msg of messagesContent) {
-          allMessageContent.push(
-            new User("gabriel", msg.content, msg._id, null)
-          );
+        const userLogged = {
+          fname: resJson.firstName,
+          id: resJson._id
         }
 
-        //this.userService = allMessageContent;
+        localStorage.setItem('User Logged', `${userLogged.fname},${userLogged.id}`);
 
-        return allMessageContent;
+        // console.log(localStorage.getItem('User Logged'));
+
       })
       .catch((err: Response) => Observable.throw(err));
   }
-
   // deleteUser(user: User) {
 
   //     return this.http.delete(`http://localhost:3000/mensagens/${user}`)
