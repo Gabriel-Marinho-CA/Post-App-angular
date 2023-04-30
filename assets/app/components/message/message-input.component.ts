@@ -18,12 +18,12 @@ export class MessageInputComponent {
     onSubmit(form: NgForm) {
 
         const userDataLogged = localStorage.getItem('User Logged');
+        
+        // const userName = userDataLogged.split(',')[0];
 
-        const userName = userDataLogged.split(',')[0];
-        const userId = userDataLogged.split(',')[1];
+        const userLoggedId = userDataLogged.split(',')[1];
 
-        const newMessage = new Message(userId, form.value.messageContentForm);
-        console.log(this.messageService)
+        const newMessage = new Message("", form.value.messageContentForm, null, userLoggedId);
 
         this.messageService.addMessage(newMessage)
             .subscribe(

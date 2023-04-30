@@ -15,11 +15,11 @@ export class MessageListComponent implements OnInit {
     constructor(private messageService: MessageService) { }
 
     ngOnInit(): void {
+
         this.messageService.getMessages()
             .subscribe(
                 (successData: any) => {
                     this.messageS = successData;
-                    console.log(this.messageS )
                 },
                 errData => console.log(errData)
             )
