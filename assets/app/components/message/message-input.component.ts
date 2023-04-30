@@ -19,12 +19,11 @@ export class MessageInputComponent {
 
         const userDataLogged = localStorage.getItem('User Logged');
 
-        const userIdIndex = userDataLogged.indexOf(',');
+        const userName = userDataLogged.split(',')[0];
+        const userId = userDataLogged.split(',')[1];
 
-        const userName = userDataLogged.substring(-userDataLogged.length, userIdIndex);
-        const userId = userDataLogged.substring(userDataLogged.length, userIdIndex + 1);
-
-        const newMessage = new Message(userName, form.value.messageContentForm);
+        const newMessage = new Message(userId, form.value.messageContentForm);
+        console.log(this.messageService)
 
         this.messageService.addMessage(newMessage)
             .subscribe(

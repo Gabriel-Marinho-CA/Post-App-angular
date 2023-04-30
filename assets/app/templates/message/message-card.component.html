@@ -2,7 +2,11 @@
     <article [ngClass]="classesCard">
         <div>
             <p>
-                <span>{{contentMessage.content}}</span>
+                <span>
+
+                    {{contentMessage.content}}
+                    
+                </span>
             </p>
         </div>
         <footer>
@@ -22,17 +26,16 @@
                     class="edit-modal"
                     *ngIf="modalOpen"
                     (ngSubmit)="onEdit()"
-                    [formGroup]="formUpdateMsg"
-                    >
-                        <div (click)="openEditModal()">x</div>
-                        <p>Conteudo da mensagem:</p>
-                        <p>{{contentMessage.content}}</p>
-                        <textarea
-                            placeholder="Digite sua nova mensagem"
-                            formControlName=content
-                            type="text">
-                        </textarea>
-                        <button (click)="onEdit()">Confirmar</button>
+                    [formGroup]="formUpdateMsg">
+                    <div (click)="openEditModal()">x</div>
+                    <p>Conteudo da mensagem:</p>
+                    <p>{{contentMessage.content}}</p>
+                    <textarea
+                        placeholder="Digite sua nova mensagem"
+                        formControlName=content
+                        type="text">
+                    </textarea>
+                    <button (click)="onEdit()">Confirmar</button>
                 </div>
             </div>
         </footer>
