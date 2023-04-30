@@ -48,20 +48,20 @@ export class MessageService {
             .catch((err: Response) => Observable.throw(err));
     }
 
-    updateMessage(updtadedMessage: Message, { userId }: Message) {
+    updateMessage(updtadedMessage: Message, { messageId }: Message) {
 
         const reqBody = JSON.stringify(updtadedMessage);
 
-        return this.http.put(`http://localhost:3000/api/mensagens/${userId}`, reqBody, { headers: this.headersReq }).map((response) => {
+        return this.http.put(`http://localhost:3000/api/mensagens/${messageId}`, reqBody, { headers: this.headersReq }).map((response) => {
             window.location.href = "/";
         })
             .catch((err: Response) => Observable.throw(err));
     }
 
 
-    deleteMessage({ userId }: Message) {
+    deleteMessage({ messageId }: Message) {
 
-        return this.http.delete(`http://localhost:3000/api/mensagens/${userId}`, { headers: this.headersReq })
+        return this.http.delete(`http://localhost:3000/api/mensagens/${messageId}`, { headers: this.headersReq })
             .map((response) => {
                 window.location.href = "/";
             })

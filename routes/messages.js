@@ -16,7 +16,6 @@ router.get('/', async function (req, res, next) {
         // Não aceita aninhamento muito grande (aqui ta mandando 1 [] desnecessario por isso o flat);
         const formatedData = transformedDatas.flat();
 
-
         return res.status(200).json({
             msg: "Mensagem recuperada com sucesso",
             data: formatedData
@@ -107,7 +106,7 @@ router.put('/:id', async function (req, res, next) {
 })
 
 
-function formatMessages(users, messages) {
+async function formatMessages(users, messages) {
     const formattedMessages = [];
 
     users.forEach(user => {
@@ -116,12 +115,22 @@ function formatMessages(users, messages) {
         const formattedMessagesForUser = messagesForUser.map(message => ({
             author: user.firstName,
             content: message.content,
-            messageId: user._id,
-            userId: message._id,
+            messageId: message._id,
+            userId: user._id,
         }));
+
+        User.findByIdAndUpdate(user._id, {
+            $push: {
+                messages: {
+                    $each: formattedMessagesForUser
+                }
+            }
+        });
 
         formattedMessages.push(formattedMessagesForUser);
     });
+
+
 
     return formattedMessages;
 }

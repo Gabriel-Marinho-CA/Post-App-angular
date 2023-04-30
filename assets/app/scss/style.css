@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .header nav {
   padding: 2.6rem;
   max-width: 1400px;
@@ -92,6 +93,27 @@
   background-color: transparent;
   outline: 1px solid #45d045;
   color: #45d045;
+}
+
+.wrap-chat .input-user-chat a {
+  text-decoration: none;
+  color: #4b4bf8;
+  outline: 1px solid #4b4bf8;
+  padding: .3rem 0;
+  -webkit-transition: background-color .35s ease;
+  transition: background-color .35s ease;
+  font-size: 1.6rem;
+}
+
+.wrap-chat .input-user-chat a:hover {
+  font-size: 0;
+  background-color: #4b4bf8;
+  color: #fff;
+}
+
+.wrap-chat .input-user-chat a:hover::before {
+  content: "Faça login para continuar";
+  font-size: 1.6rem;
 }
 
 .wrap-card {

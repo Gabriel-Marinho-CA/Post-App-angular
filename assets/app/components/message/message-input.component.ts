@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MessageService } from "./message.services";
 import { Message } from "../../models/message.model";
 import { NgForm } from "@angular/forms";
@@ -11,14 +11,24 @@ import { NgForm } from "@angular/forms";
     styleUrls: ["../../scss/style.css"]
 })
 
-export class MessageInputComponent {
+export class MessageInputComponent implements OnInit {
 
     constructor(private messageService: MessageService) { }
+
+    private userLogged: Boolean = false;
+
+
+    ngOnInit(): void {
+        if (localStorage.getItem('User Logged')) {
+            this.userLogged = true;
+        }
+    }
+
 
     onSubmit(form: NgForm) {
 
         const userDataLogged = localStorage.getItem('User Logged');
-        
+
         // const userName = userDataLogged.split(',')[0];
 
         const userLoggedId = userDataLogged.split(',')[1];
