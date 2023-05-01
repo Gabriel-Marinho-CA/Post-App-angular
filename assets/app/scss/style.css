@@ -329,4 +329,119 @@
   border: 1px solid #000;
   color: #000;
 }
+
+.newsletter {
+  -webkit-box-shadow: 0px 3px 6px #cecece;
+          box-shadow: 0px 3px 6px #cecece;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 4rem;
+  padding: 3rem 0;
+  margin-top: 3rem;
+}
+
+.newsletter .title-news {
+  text-align: center;
+}
+
+.newsletter .title-news h2 {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.newsletter form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 500px;
+  gap: 1.4rem;
+}
+
+.newsletter form label,
+.newsletter form p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.newsletter form .emailNews {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.newsletter form .emailNews input {
+  width: 100%;
+}
+
+.newsletter form .wrapFields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
+}
+
+.newsletter form .wrapFields .input-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: .5rem;
+}
+
+.newsletter form .wrapFields .input-group:nth-child(3) {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  gap: 1rem;
+}
+
+.newsletter form .wrapFields .input-group select {
+  background: none;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.newsletter form .wrapFields .radio-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.newsletter form button {
+  background: none;
+  border: 1px solid greenyellow;
+  border-radius: 6px;
+  padding: .7rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  -webkit-transition: all .35s ease;
+  transition: all .35s ease;
+}
+
+.newsletter form button:hover {
+  font-size: 1.6rem;
+}
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,48 @@
+<div class="newsletter">
+    <div class="title-news">
+        <h2>Receba nossas newsletters</h2>
+    </div>
+
+    <form [formGroup]="formNewsletter"
+        (ngSubmit)="onSubmit()">
+        <div class="emailNews">
+            <label for="email">Email</label>
+            <input type="email" name="emailNews" placeholder="Digite seu email"
+                formControlName="emailNews">
+        </div>
+        <div class="wrapFields">
+            <div class="input-group">
+                <label for="knowing">Qual seu gênero</label>
+                <select name="gender" id="gender" required
+                    formControlName="gender">
+                    <option value="male">Masculino</option>
+                    <option value="female">Feminino</option>
+                    <option value="notInformed">Prefiro não informar</option>
+                </select>
+            </div>
+            <div class="radio-area">
+                <p>Como ficou sabendo do nosso app?</p>
+                <div class="radio-wrap">
+                    <div class="radio-fields" *ngFor="let know of knowings">
+                        <input type="radio" id="{{know.id}}"
+                            value="{{know.value}}"
+                            name="knowing" ngModel
+                            formControlName="knowing">
+                        <label for="male">{{know.value}}</label>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="input-group">
+                <label for="confirmation">Ao marcar essa opção você está nos
+                    dando
+                    direito a
+                    roubar seus dados e vender no mercado livre</label>
+                <input type="checkbox" name="confirmSignup" id="confirmation"
+                    required formControlName="confirmSignup">
+            </div>
+
+        </div>
+        <button type="submit">Receber</button>
+    </form>
+</div>

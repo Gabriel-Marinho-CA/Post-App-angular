@@ -3,6 +3,7 @@ import { Message } from "../../models/message.model";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import "rxjs/Rx";
 import { Observable } from "rxjs";
+import { Newsletter } from "../../../../models/newsletter.models";
 
 @Injectable()
 export class MessageService {
@@ -66,5 +67,15 @@ export class MessageService {
                 window.location.href = "/";
             })
 
+    }
+    newsLetter(newsletter: Newsletter) {
+        const reqBody = JSON.stringify(newsletter);
+
+        return this.http.post('http://localhost:3000/api/mensagens/newsletter', reqBody, { headers: this.headersReq })
+            .map((res: Response) => {
+                // window.location.href = "/"
+                console.log(res.json())
+            })
+            .catch((err: Response) => Observable.throw(err))
     }
 }

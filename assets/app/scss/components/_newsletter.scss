@@ -1,0 +1,85 @@
+.newsletter {
+    box-shadow: 0px 3px 6px #cecece;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    padding: 3rem 0;
+    margin-top: 3rem;
+
+    .title-news {
+        text-align: center;
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        gap: 1.4rem;
+
+        label,
+        p {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .emailNews {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            input {
+                width: 100%;
+            }
+        }
+
+        .wrapFields {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+
+            .input-group {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                &:nth-child(3) {
+                    flex-direction: row-reverse;
+                    gap:1rem;
+                }
+
+                select {
+                    background: none;
+                    border: 1px solid #000;
+                    border-radius: 3px;
+                }
+            }
+
+            .radio-wrap {
+                display: flex;
+                gap: 1rem;
+            }
+        }
+
+        button {
+            background: none;
+            border: 1px solid greenyellow;
+            border-radius: 6px;
+            padding: .7rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            transition: all .35s ease;
+
+            &:hover {
+                font-size: 1.6rem;
+            }
+        }
+
+    }
+}

@@ -2,6 +2,7 @@ var express = require("express");
 const router = express.Router();
 const Message = require("../models/message");
 const User = require("../models/user");
+const Newsletter = require("../models/newsletter");
 
 
 router.get('/', async function (req, res, next) {
@@ -122,6 +123,36 @@ router.put('/:id', async function (req, res, next) {
     }
 })
 
+router.post('/newsletter', async function (req, res, next) {
+    const {
+        gender,
+        knowing,
+        confirmSignup,
+        emailNews
+    } = req.body;
+
+    const newNewsletter = new Newsletter({
+        gender,
+        knowing,
+        confirmSignup,
+        emailNews
+    });
+
+    try {
+        await newNewsletter.save();
+        return res.status(200).json({
+            msg: "Newsletter send"
+        })
+    } catch (error) {
+        return res.status(400).json({
+            msg: "Oops something went whwong while send the newsletter"
+        })
+    }
+
+})
+
+
+// --------  FUNCTIONS ----------- //
 
 async function formatMessages(users, messages) {
     const formattedMessages = [];

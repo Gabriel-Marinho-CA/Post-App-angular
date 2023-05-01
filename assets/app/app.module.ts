@@ -15,6 +15,7 @@ import { SigninComponent } from './components/authentication/signin.component';
 import { SignupComponent } from './components/authentication/signup.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { NewsletterComponent } from './components/common/newsletter.components';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
         MessageCardComponent,
         SigninComponent,
         SignupComponent,
-        LogoutComponent
+        LogoutComponent,
+        NewsletterComponent
     ],
     imports: [
         BrowserModule,
