@@ -56,7 +56,9 @@ router.post("/signin", async function (req, res, next) {
       msg: "Wrong password",
     });
 
-    return res.redirect("/");
+    return res.status(200).json({
+      userLogin
+    });
 
   } catch (error) {
     res.status(404).json([{

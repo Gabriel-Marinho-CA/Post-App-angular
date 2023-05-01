@@ -1,5 +1,4 @@
 .auth-wrapper {
-
     header {
         display: flex;
         justify-content: space-between;
@@ -16,6 +15,46 @@
                 text-decoration: underline;
                 font-weight: bold;
                 font-size: 1.8rem;
+            }
+        }
+    }
+}
+
+.wrapperContentAuth {
+    max-width: 350px;
+    border: 1px solid #1a1b1a;
+    padding: 1rem;
+    margin: 7.5rem auto 0 auto;
+    border-radius: 4px;
+
+    h1 {
+        text-align: center;
+        padding-bottom: .6rem;
+    }
+
+    form {
+
+        input,
+        button {
+            width: 100%;
+            height: 35px;
+        }
+
+
+        button {
+            border: none;
+            background-color: #000;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all .20s ease-in;
+
+            &:hover {
+                background: transparent;
+                border: 1px solid #000;
+                color: #000;
             }
         }
     }

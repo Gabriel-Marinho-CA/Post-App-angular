@@ -44,19 +44,7 @@ export class UserService {
 
         localStorage.setItem('User Logged', `${userLogged.fname},${userLogged.id}`);
 
-        // console.log(localStorage.getItem('User Logged'));
-
       })
       .catch((err: Response) => Observable.throw(err));
   }
-  // deleteUser(user: User) {
-
-  //     return this.http.delete(`http://localhost:3000/mensagens/${user}`)
-  //         .map((response) => {
-  //             window.location.href = "/";
-  //         })
-  //         .catch((err: Response) => Observable.throw(err));
-  //     this.userService.splice(this.userService.indexOf(user), 1);
-
-  // }
 }

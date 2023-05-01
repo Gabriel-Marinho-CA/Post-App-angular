@@ -11,6 +11,7 @@ import {
   selector: "app-signup",
   providers: [UserService],
   templateUrl: "../../templates/authentication/signup.component.html",
+  styleUrls: ["../../scss/style.css"]
 })
 
 export class SignupComponent implements OnInit {
@@ -20,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.userService.addUser(this.formSignUp.value).subscribe(
-      (successData) => console.log(successData),
+      (successData) => window.location.href="/autenticacao/signin",
       (errData) => console.log(errData)
     );
 

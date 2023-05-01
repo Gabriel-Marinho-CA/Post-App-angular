@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { UserService } from "./user.services";
 
+
 @Component({
     selector: "app-signin",
     templateUrl: "../../templates/authentication/signin.component.html",
-    providers: [UserService]
+    providers: [UserService],
+    styleUrls: ["../../scss/style.css"]
 })
 
 export class SigninComponent implements OnInit {
@@ -23,8 +25,8 @@ export class SigninComponent implements OnInit {
         }
 
         this.userService.getUser(userLogin).subscribe(
-            (successData) => console.log(successData),
-            (errData) => console.log(errData)
+            (successData) => window.location.href="/",
+            (errData) => alert("Usuário não encontrado")
         )
 
         this.formSignIn.reset();

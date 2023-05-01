@@ -3,11 +3,13 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: "app-logout",
+    styleUrls: ["../../scss/style.css"],
     template: ` 
+        <h3>Clique para sair da sua conta</h3>
         <button
-            class="btn btn-daner"
+            class="btn btn-danger"
             (click)="onLogout()"
-        >Logout</button>
+        >Sair</button>
     `
 })
 
