@@ -2,8 +2,8 @@ import { Component } from "@angular/core";
 
 
 @Component({
-    selector:"app-logout",
-    template:` 
+    selector: "app-logout",
+    template: ` 
         <button
             class="btn btn-daner"
             (click)="onLogout()"
@@ -12,10 +12,12 @@ import { Component } from "@angular/core";
 })
 
 export class LogoutComponent {
-    
+
     onLogout() {
-        
+        localStorage.clear();
+        setTimeout(() => { window.location.href = "/" }, 1000)
+
     }
 
-    constructor(){}
+    constructor() { }
 }
