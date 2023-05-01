@@ -43,6 +43,11 @@ router.post('/', async function (req, res, next) {
         msgIdUserId: userLogged._id
     });
 
+
+    const UserMessageAttach = await userLogged.messages.push(message);
+
+    await userLogged.save(UserMessageAttach);
+
     try {
         const MessageAdded = await message.save();
 
@@ -68,20 +73,32 @@ router.delete('/:id', async function (req, res, next) {
 
         const MessageDeleted = await Message.findByIdAndDelete(id);
 
+        const allUsers = await User.find({});
+
+        const user = await findUserByMessageId(MessageDeleted._id, allUsers);
+
+        const userMsgIds = user.messages.map(id => id.toString());
+
+        const updatedMessages = userMsgIds.filter(id => id !== MessageDeleted._id.toString());
+
+        await User.findByIdAndUpdate(user._id, {
+            messages: updatedMessages
+        });
+
         return res.status(200).json([{
                 msg: "Message Deleted"
             },
             MessageDeleted
-        ])
+        ]);
 
     } catch (error) {
         res.status(404).json([{
                 msg: "Fail to delete message"
             },
             error
-        ])
+        ]);
     }
-})
+});
 
 router.put('/:id', async function (req, res, next) {
 
@@ -119,21 +136,22 @@ async function formatMessages(users, messages) {
             userId: user._id,
         }));
 
-        User.findByIdAndUpdate(user._id, {
-            $push: {
-                messages: {
-                    $each: formattedMessagesForUser
-                }
-            }
-        });
-
         formattedMessages.push(formattedMessagesForUser);
     });
-
-
-
     return formattedMessages;
 }
 
+function findUserByMessageId(msg, users) {
+
+    for (let i = 0; i < users.length; i++) {
+        const msgIdStr = msg.toString();
+        const userMsgIds = users[i].messages.map(id => id.toString());
+        if (userMsgIds.includes(msgIdStr)) {
+            return users[i];
+        }
+    }
+
+    return null;
+}
 
 module.exports = router;
