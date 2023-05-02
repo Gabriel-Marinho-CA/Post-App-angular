@@ -9,6 +9,7 @@ var appRoutes = require("./routes/app");
 var authRoutes = require("./routes/user");
 var messageRoutes = require("./routes/messages");
 const cors = require("cors");
+require('dotenv').config();
 // const { MongoClient} = require("mongodb");
 
 var app = express();
@@ -16,7 +17,7 @@ var app = express();
 const db_name = "node-angular";
 async function main() {
   mongoose.connect(
-    `mongodb+srv://gabriel:gabriel123-@cluster0.es8furw.mongodb.net/test`
+    `mongodb+srv://${process.env.BD_LOGIN}:${process.env.BD_PASSWORD}@cluster0.es8furw.mongodb.net/test`
   );
 
   console.log("conectado");
