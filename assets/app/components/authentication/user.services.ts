@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class UserService {
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
 
   private headersReq = new Headers({
     "Content-Type": "application/json",
@@ -28,24 +28,25 @@ export class UserService {
   }
 
   getUser(userLogin: any) {
-
     const reqBody = JSON.stringify(userLogin);
 
     return this.http
-      .post("http://localhost:3000/api/autenticacao/signin", reqBody, { headers: this.headersReq })
+      .post("http://localhost:3000/api/autenticacao/signin", reqBody, {
+        headers: this.headersReq,
+      })
       .map((response: Response) => {
-
-        const resJson = (response.json()).userLogin;
+        const resJson = response.json().userLogin;
 
         const userLogged = {
           fname: resJson.firstName,
-          id: resJson._id
-        }
+          id: resJson._id,
+        };
 
-        localStorage.setItem('User Logged', `${userLogged.fname},${userLogged.id}`);
-
+        localStorage.setItem(
+          "User Logged",
+          `${userLogged.fname},${userLogged.id}`
+        );
       })
       .catch((err: Response) => Observable.throw(err));
   }
-
 }
